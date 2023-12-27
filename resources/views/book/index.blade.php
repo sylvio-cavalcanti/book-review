@@ -1,4 +1,0 @@
-<div>
-    Books:
-    {{$book}}
-</div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -9,10 +10,18 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $book = 'Test Book';
-        return view('book.index', compact('book'));
+        $title = $request->input('title');
+        $books = Book::when(
+            $title,
+            fn($query, $title) => $query->title($title)->highestRated(),
+            fn($query) => $query->highestRated(),
+
+        )
+            ->get();
+        // $books = [];
+        return view('books.index', compact('books'));
     }
 
     /**
@@ -36,7 +45,9 @@ class BookController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // dd($id);
+        return view('books.show', compact('id'));
+
     }
 
     /**

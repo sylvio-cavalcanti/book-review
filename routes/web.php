@@ -21,10 +21,11 @@ Route::get('/', function () {
 Route::resource('photos', BookController::class);
 
 
-Route::get('/books', [BookController::class, 'index'])->name('');
+// Route::get('/books', [BookController::class, 'index'])->name('books');
 
 
-Route::group(['prefix' => 'book'], function () {
-    Route::get('/', [BookController::class, 'index'])->name('show');
+Route::group(['prefix' => 'books'], function () {
+    Route::get('/', [BookController::class, 'index'])->name('books');;
     Route::get('/edit', [BookController::class, 'edit'])->name('edit');
+    Route::get('/show/{id}', [BookController::class, 'show'])->name('show');
 });
