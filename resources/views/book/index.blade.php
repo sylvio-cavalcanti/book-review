@@ -1,0 +1,4 @@
+<div>
+    Books:
+    {{$book}}
+</div>
