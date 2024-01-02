@@ -25,7 +25,7 @@ Route::resource('photos', BookController::class);
 
 
 Route::group(['prefix' => 'books'], function () {
-    Route::get('/', [BookController::class, 'index'])->name('books');;
+    Route::get('/', [BookController::class, 'index'])->name('books');
     Route::get('/edit', [BookController::class, 'edit'])->name('edit');
     Route::get('/show/{id}', [BookController::class, 'show'])->name('show');
 });
